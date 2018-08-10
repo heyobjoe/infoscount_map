@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(zipcode)\nlibrary(ggplot2)\ndata(\"zipcode\")\n\n\nsubfulldata <- fulldata[-which(is.na(fulldata$store_zip)),]\n\nsubfulldata$store_zip <- sapply(subfulldata$store_zip, function(x){if(nchar(x)<5){paste0(0,x)}else{x}})\n\nsurveyzip <- as.data.frame(subfulldata[,c(\"trip_id\", \"store_zip\", \"abi_channel\",\"gender\",\"ethnicity\",\"age_bin\",\"income_bin\",\"brand_beer1\",\"category\")])\ncolnames(surveyzip)[2] <- \"zip\"\nsurveyzip <- merge(surveyzip, zipcode, by.x = \"zip\", by.y = \"zip\")\n\nsurveyzip$region <- substr(surveyzip$zip, 1, 1)\n\n\nsaveRDS(surveyzip, \"zipdata.rds\")  \n\n\n",
+    "created" : 1497976750228.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "808033741",
+    "id" : "6671D704",
+    "lastKnownWriteTime" : 1497460598,
+    "last_content_update" : 1497460598,
+    "path" : "~/ABi predictive analytics/zip map.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

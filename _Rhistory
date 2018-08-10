@@ -1,0 +1,209 @@
+shiny::runApp()
+install.packages(c("maps", "mapproj"))
+library(maps)
+library(mapproj)
+percent_map <- function(var, color, legend.title, min = 0, max = 100) {
+# generate vector of fill colors for map
+shades <- colorRampPalette(c("white", color))(100)
+# constrain gradient to percents that occur between min and max
+var <- pmax(var, min)
+var <- pmin(var, max)
+percents <- as.integer(cut(var, 100,
+include.lowest = TRUE, ordered = TRUE))
+fills <- shades[percents]
+# plot choropleth map
+map("county", fill = TRUE, col = fills,
+resolution = 0, lty = 0, projection = "polyconic",
+myborder = 0, mar = c(0,0,0,0))
+# overlay state borders
+map("state", col = "white", fill = FALSE, add = TRUE,
+lty = 1, lwd = 1, projection = "polyconic",
+myborder = 0, mar = c(0,0,0,0))
+# add a legend
+inc <- (max - min) / 4
+legend.text <- c(paste0(min, " % or less"),
+paste0(min + inc, " %"),
+paste0(min + 2 * inc, " %"),
+paste0(min + 3 * inc, " %"),
+paste0(max, " % or more"))
+legend("bottomleft",
+legend = legend.text,
+fill = shades[c(1, 25, 50, 75, 100)],
+title = legend.title)
+}
+??counties
+zipdata <- readRDS("zipdata.rds")
+library(ggplot2)
+runApp()
+runApp()
+View(zipdata)
+View(zipdata)
+library(maps)
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+View(zipdata)
+zipdata <- readRDS("zipdata.rds")
+runApp()
+zipdata <- readRDS("zipdata.rds")
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+?substr
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+View(zipdata)
+zipdata <- readRDS("zipdata.rds")
+View(zipdata)
+zipdata <- readRDS("zipdata.rds")
+runApp()
+zipdata <- readRDS("zipdata.rds")
+runApp()
+runApp()
+runApp()
+runApp()
+input[1]
+input$gender
+?subset
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+?any
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+runApp()
+read.csv("C:/Users/Infoscout/Documents/ABi_map/Demographic_Statistics_By_Zip_Code.csv")
+demodata <- read.csv("C:/Users/Infoscout/Documents/ABi_map/Demographic_Statistics_By_Zip_Code.csv")
+View(demodata)
+colnames(demodata)[1] <- "zip"
+library(zipcode)
+data("zipcode")
+popdata <- merge(demodata, zipcode, by.x = "zip", by.y = "zip")
+View(popdata)
+ggplot(data = popdata) +
+geom_point(aes(x = longitude, y = latitude, color = "red", alpha = .5)) +
+theme_bw() + scale_x_continuous(limits = c(-125,-66), breaks = NULL) +
+scale_y_continuous(limits = c(25,50), breaks = NULL) +
+labs(x = NULL, y = NULL) +
+geom_polygon(data = map_data("usa"), aes(x=long, y = lat, group = group), fill = NA, color = "grey") +
+coord_fixed(1.3) + theme(legend.position = "none")
+demodata <- read.csv("C:/Users/Infoscout/Documents/ABi_map/2010+Census+Population+By+Zipcode+(ZCTA).csv")
+colnames(demodata)[1] <- "zip"
+popdata <- merge(demodata, zipcode, by.x = "zip", by.y = "zip")
+library(ggplot2)
+ggplot(data = popdata) +
+geom_point(aes(x = longitude, y = latitude, color = "red", alpha = .5)) +
+theme_bw() + scale_x_continuous(limits = c(-125,-66), breaks = NULL) +
+scale_y_continuous(limits = c(25,50), breaks = NULL) +
+labs(x = NULL, y = NULL) +
+geom_polygon(data = map_data("usa"), aes(x=long, y = lat, group = group), fill = NA, color = "grey") +
+coord_fixed(1.3) + theme(legend.position = "none")
+ggplot(data = popdata) +
+geom_point(aes(x = longitude, y = latitude, color = "red", alpha = .5)) +
+theme_bw() + scale_x_continuous(limits = c(-125,-50), breaks = NULL) +
+scale_y_continuous(limits = c(25,50), breaks = NULL) +
+labs(x = NULL, y = NULL) +
+geom_polygon(data = map_data("usa"), aes(x=long, y = lat, group = group), fill = NA, color = "grey") +
+coord_fixed(1.3) + theme(legend.position = "none")
+ggplot(data = popdata) +
+geom_point(aes(x = longitude, y = latitude, color = "red", alpha = .1)) +
+theme_bw() + scale_x_continuous(limits = c(-125,-66), breaks = NULL) +
+scale_y_continuous(limits = c(25,50), breaks = NULL) +
+labs(x = NULL, y = NULL) +
+geom_polygon(data = map_data("usa"), aes(x=long, y = lat, group = group), fill = NA, color = "grey") +
+coord_fixed(1.3) + theme(legend.position = "none")
+runApp()
+View(zipdata)
+zipdata <- readRDS("zipdata.rds")
+runApp()
+demodata$zip <- sapply(demodata$zip, function(x){if(nchar(x)<5){paste0(x,0)}else{x}})
+demodata <- read.csv("C:/Users/Infoscout/Documents/ABi_map/2010+Census+Population+By+Zipcode+(ZCTA).csv")
+colnames(demodata)[1] <- "zip"
+demodata$zip <- sapply(demodata$zip, function(x){if(nchar(x)<5){paste0(0,x)}else{x}})
+library(zipcode)
+data("zipcode")
+popdata <- merge(demodata, zipcode, by.x = "zip", by.y = "zip")
+library(ggplot2)
+ggplot(data = popdata) +
+geom_point(aes(x = longitude, y = latitude, color = "red", alpha = .1)) +
+theme_bw() + scale_x_continuous(limits = c(-125,-66), breaks = NULL) +
+scale_y_continuous(limits = c(25,50), breaks = NULL) +
+labs(x = NULL, y = NULL) +
+geom_polygon(data = map_data("usa"), aes(x=long, y = lat, group = group), fill = NA, color = "grey") +
+coord_fixed(1.3) + theme(legend.position = "none")
+zipdata <- readRDS("zipdata.rds")
+runApp()
+runApp()
+runApp()
+shiny::runApp()

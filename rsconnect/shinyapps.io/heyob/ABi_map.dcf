@@ -1,0 +1,11 @@
+name: ABi_map
+title: ABi_map
+account: heyob
+server: shinyapps.io
+appId: 189148
+bundleId: 867069
+url: https://heyob.shinyapps.io/ABi_map/
+when: 1497458648.96647
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: 2010+Census+Population+By+Zipcode+(ZCTA).csv|helpers.R

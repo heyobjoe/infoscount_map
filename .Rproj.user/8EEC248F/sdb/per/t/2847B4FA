@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(leaflet)\nzipdata <- readRDS(\"zipdata.rds\")\nshinyServer(function(input, output) {\n  \n  output$map <- renderPlot({\n    \n    x <- c(input$gender, input$ethnicity, input$age)\n    names(x) <- c(\"gender\",\"ethnicity\",\"age_bin\")\n\n    if(all(x == \"all\")){\n      data <- zipdata\n    }else if(length(which(x != \"all\")) == 1){\n      data <- zipdata[which(zipdata[,names(x[which(x != \"all\")])] == x[which(x != \"all\")]), c(\"longitude\",\"latitude\")]\n    }else if(length(which(x != \"all\")) == 2){\n      x1 <- which(x != \"all\")[1]\n      x2 <- which(x != \"all\")[2]\n      data <- zipdata[which(zipdata[,names(x1)] == x[x1] & zipdata[,names(x2)] == x[x2]), c(\"longitude\",\"latitude\")]\n    }else if(length(which(x != \"all\")) == 3){\n      x1 <- which(x != \"all\")[1]\n      x2 <- which(x != \"all\")[2]\n      x3 <- which(x != \"all\")[3]\n      data <- zipdata[which(zipdata[,names(x1)] == x[x1] & zipdata[,names(x2)] == x[x2] & zipdata[,names(x3)] == x[x3]), c(\"longitude\",\"latitude\")]\n    }\n    \n    ggplot(data = data) + \n      geom_point(aes(x = longitude, y = latitude, color = \"red\", alpha = .5)) +\n      theme_bw() + scale_x_continuous(limits = c(-125,-66), breaks = NULL) +\n      scale_y_continuous(limits = c(25,50), breaks = NULL) + \n      labs(x = NULL, y = NULL) +\n      geom_polygon(data = map_data(\"usa\"), aes(x=long, y = lat, group = group), fill = NA, color = \"grey\") + \n      coord_fixed(1.3) + theme(legend.position = \"none\")\n    \n  })\n  output$text <- renderText({\n    \n    x <- c(input$gender, input$ethnicity, input$age)\n    names(x) <- c(\"gender\",\"ethnicity\",\"age_bin\")\n\n    if(all(x == \"all\")){\n      data <- zipdata\n    }else if(length(which(x != \"all\")) == 1){\n      data <- zipdata[which(zipdata[,names(x[which(x != \"all\")])] == x[which(x != \"all\")]), c(\"longitude\",\"latitude\")]\n    }else if(length(which(x != \"all\")) == 2){\n      x1 <- which(x != \"all\")[1]\n      x2 <- which(x != \"all\")[2]\n      data <- zipdata[which(zipdata[,names(x1)] == x[x1] & zipdata[,names(x2)] == x[x2]), c(\"longitude\",\"latitude\")]\n    }else if(length(which(x != \"all\")) == 3){\n      x1 <- which(x != \"all\")[1]\n      x2 <- which(x != \"all\")[2]\n      x3 <- which(x != \"all\")[3]\n      data <- zipdata[which(zipdata[,names(x1)] == x[x1] & zipdata[,names(x2)] == x[x2] & zipdata[,names(x3)] == x[x3]), c(\"longitude\",\"latitude\")]\n    }\n    \n    paste0(\"Represents \" , 100 * round(nrow(data)/nrow(zipdata), 4) , \"%\" , \" of total sample.\")\n    \n  })\n  \n})\n\n\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1497375815505.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1468142709",
+    "id" : "2847B4FA",
+    "lastKnownWriteTime" : 1498075274,
+    "last_content_update" : 1498075274522,
+    "path" : "~/ABi_map/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
